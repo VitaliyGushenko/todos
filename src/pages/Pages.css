@@ -1,0 +1,75 @@
+.contentStyleAdminPanel {
+  margin: 24px 16px 0;
+  padding: 0 40% 0 30%;
+}
+
+.contentStyleBasket {
+  margin: 24px 16px 0;
+  padding: 0 30% 0 30%;
+}
+
+.contentStyleProducts {
+  margin: 24px 16px 0;
+}
+
+.contentStyleProductsChildren {
+  padding: 0 20% 0 20%;
+}
+
+.contentStyleListProducts {
+  text-align: left;
+}
+
+.contentStyleListProductsR {
+  text-align: right;
+}
+
+.deleteBtnProduct {
+  margin-left: 5px;
+  height: 40px;
+  width: 60px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0ch;
+}
+
+.btnProduct {
+  margin-left: 5px;
+}
+
+.marginLeft {
+  margin-left: 180px;
+}
+
+.productContent {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.productBtn {
+  text-align: right;
+  display: 'flex';
+  flex-direction: 'row';
+}
+
+.site-layout-background {
+  padding: 24px;
+  min-height: 850px;
+  text-align: 'center';
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.styleWidth {
+  width: 500px;
+}
+
+img {
+  width: 30px;
+  height: 30px;
+}
