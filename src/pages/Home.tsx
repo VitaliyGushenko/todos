@@ -6,7 +6,7 @@ import Header from './header/Header';
 import './Home.css';
 import Todos from './todos/Todos';
 import { IUserInfoData } from '../interfaces/user/IStoreUserInfoData';
-import { IStore } from '../interfaces/iStore';
+import { IStore } from '../interfaces/IStore';
 import { Layout } from 'antd';
 
 const { Content } = Layout;

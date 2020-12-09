@@ -4,6 +4,7 @@ export interface ITodo {
   todo?: string;
   userName?: string;
   userUid?: string;
+  dateCompleted?: any;
 }
 
 export interface ITodoCompleatedDeleted {

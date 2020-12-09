@@ -1,5 +1,5 @@
 .inpt {
-  width: 100%;
+  width: 70%;
 }
 
 .inptBtn {
@@ -14,4 +14,12 @@
 
 .registerBtn {
   margin-left: 5px;
+}
+
+.dateField {
+  margin-left: 5px;
+}
+
+.timeOutTodo {
+   background-color: rgb(253, 255, 146);
 }

@@ -1,5 +1,5 @@
 import { Button } from 'antd';
-import React, { useCallback } from 'react';
+import React, { Fragment, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { ITodoKey } from '../../interfaces/todo/ITodo';
 import {
@@ -10,6 +10,12 @@ import './../../pages/Pages.css';
 
 const Todo = ({ todosInfo }: ITodoKey) => {
   const dispatch = useDispatch();
+
+  const date: any = new Date(todosInfo.dateCompleted.seconds * 1000);
+  const nowDate: any = new Date(Date.now());
+
+  const month = (date.getMonth()+1 < 10) ? '0'+ (date.getMonth()+1) : date.getMonth()+1;
+  const checkDate = date < new Date(Date.now());
 
   const completeTodo = useCallback(
     (e) => {
@@ -23,6 +29,19 @@ const Todo = ({ todosInfo }: ITodoKey) => {
       dispatch(fetchDeleteTodo(todosInfo.todo!));
     },
     [dispatch, todosInfo.todo]
+  );
+
+  const differenceDays = Math.floor((nowDate - date) / (60 * 60 * 24 * 1000));
+
+  const title = 'Time to complete the task ended ' + differenceDays + ' days ago';
+
+  const infoTodoBtn = (
+    <Button className='deleteBtnProduct' title={title}>
+      <img
+        src='https://www.flaticon.com/svg/static/icons/svg/2489/2489250.svg'
+        alt='complete'
+      ></img>
+    </Button>
   );
 
   const deleteTodoBtn = (
@@ -43,27 +62,24 @@ const Todo = ({ todosInfo }: ITodoKey) => {
     </Button>
   );
 
-  const todo = (
+  const todoCommon = (
     <div className='productContent'>
-      {todosInfo.todo}
+      {!todosInfo.completed ? <span>{todosInfo.todo}</span> : <s>{todosInfo.todo}</s>}
+      {`${date.getDate()}.${month}.${date.getFullYear()}`}
       <div className='productBtn'>
-        {completeTodoBtn}
+        {!todosInfo.completed && !checkDate ? completeTodoBtn: null}
+        {checkDate && differenceDays !== 0 && !todosInfo.completed ? infoTodoBtn: null}
         {deleteTodoBtn}
       </div>
     </div>
   );
 
-  const todoComplete = (
-    <div className='productContent'>
-      <s>{todosInfo.todo}</s>
-      <div className='productBtn'>{deleteTodoBtn}</div>
-    </div>
-  );
+  const todo = checkDate && differenceDays !== 0 && !todosInfo.completed ? <div className='timeOutTodo'>{todoCommon}</div> : <div>{todoCommon}</div>;
 
   return (
-    <div>
-      {!todosInfo.completed ? todo : todoComplete}
-    </div>
+    <Fragment>
+      {todo}
+    </Fragment>
   );
 };
 

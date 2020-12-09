@@ -44,6 +44,7 @@ export const addTodo = (dataAddTodo: ITodoRequestSuccsess) => {
     userName: dataAddTodo.data.userName,
     userUid: dataAddTodo.data.userUid,
     todo: dataAddTodo.data.todo,
+    dateCompleted: dataAddTodo.data.dateCompleted,
     completed: false,
   });
 };

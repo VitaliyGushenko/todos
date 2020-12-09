@@ -11,7 +11,7 @@ import {
 } from '../../redux/actions/todo/actions';
 import './Todos.css';
 import { IUserInfoData } from '../../interfaces/user/IStoreUserInfoData';
-import { IStore } from '../../interfaces/iStore';
+import { IStore } from '../../interfaces/IStore';
 import { ITodo } from '../../interfaces/todo/ITodo';
 
 import { Button, Input } from 'antd';
