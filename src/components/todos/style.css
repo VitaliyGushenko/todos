@@ -21,5 +21,9 @@
 }
 
 .timeOutTodo {
-   background-color: rgb(253, 255, 146);
+   background-color: rgb(255, 182, 182);
+}
+
+.preTimeOutTodo {
+  background-color: rgb(251, 252, 193);
 }

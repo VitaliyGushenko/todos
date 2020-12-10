@@ -71,7 +71,10 @@ export const getTodos = (data: ITodoFilter) => {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            dataTodos.push(doc.data());
+            console.log(doc.data());
+            const date = new Date(doc.data().dateCompleted.seconds * 1000);
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+            (date >= new Date(Date.now())) ? dataTodos.push(doc.data()) : null;
           });
           return dataTodos;
         });

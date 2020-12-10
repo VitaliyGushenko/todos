@@ -1,5 +1,5 @@
 import { Button } from 'antd';
-import React, { Fragment, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { ITodoKey } from '../../interfaces/todo/ITodo';
 import {
@@ -15,6 +15,7 @@ const Todo = ({ todosInfo }: ITodoKey) => {
   const nowDate: any = new Date(Date.now());
 
   const month = (date.getMonth()+1 < 10) ? '0'+ (date.getMonth()+1) : date.getMonth()+1;
+  const day = (date.getDate() < 10) ? '0'+ (date.getDate()) : date.getDate();
   const checkDate = date < new Date(Date.now());
 
   const completeTodo = useCallback(
@@ -32,6 +33,7 @@ const Todo = ({ todosInfo }: ITodoKey) => {
   );
 
   const differenceDays = Math.floor((nowDate - date) / (60 * 60 * 24 * 1000));
+  console.log(differenceDays);
 
   const title = 'Time to complete the task ended ' + differenceDays + ' days ago';
 
@@ -64,22 +66,24 @@ const Todo = ({ todosInfo }: ITodoKey) => {
 
   const todoCommon = (
     <div className='productContent'>
-      {!todosInfo.completed ? <span>{todosInfo.todo}</span> : <s>{todosInfo.todo}</s>}
-      {`${date.getDate()}.${month}.${date.getFullYear()}`}
-      <div className='productBtn'>
-        {!todosInfo.completed && !checkDate ? completeTodoBtn: null}
-        {checkDate && differenceDays !== 0 && !todosInfo.completed ? infoTodoBtn: null}
-        {deleteTodoBtn}
+      <div className='todoContent'>
+        {!todosInfo.completed ? <div className='noCross'>{todosInfo.todo}</div> : <div className='cross'>{todosInfo.todo}</div>}
+        <div className='date'>{`${day}.${month}.${date.getFullYear()}`}</div>
+        <div className='productBtn'>
+          {!todosInfo.completed && !checkDate ? completeTodoBtn: null}
+          {checkDate && differenceDays !== 0 && !todosInfo.completed ? infoTodoBtn: null}
+          {deleteTodoBtn}
+        </div>
       </div>
     </div>
   );
 
-  const todo = checkDate && differenceDays !== 0 && !todosInfo.completed ? <div className='timeOutTodo'>{todoCommon}</div> : <div>{todoCommon}</div>;
+  const todo = (!todosInfo.completed) ? (differenceDays === -1 ? (<div className='preTimeOutTodo'>{todoCommon}</div>) : checkDate ? <div className='timeOutTodo'>{todoCommon}</div> : todoCommon)  : todoCommon;
 
   return (
-    <Fragment>
+    <div>
       {todo}
-    </Fragment>
+    </div>
   );
 };
 
